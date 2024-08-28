@@ -1,0 +1,6 @@
+.mainContainer {
+  padding-top: 48px;
+  padding-left: 64px;
+  padding-right: 64px;
+  display: flex;
+}

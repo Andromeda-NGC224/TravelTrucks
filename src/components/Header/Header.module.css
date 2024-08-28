@@ -1,0 +1,30 @@
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 24px;
+  padding-left: 64px;
+  padding-bottom: 24px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #dcdddf;
+}
+.logo {
+  justify-self: start;
+  font-weight: 800;
+  font-size: 24px;
+}
+.logoPartTravel {
+  color: #101828;
+}
+.logoPartTrucks {
+  color: #475467;
+}
+.nav {
+  justify-content: center;
+  font-weight: 500;
+  align-content: center;
+}
+.list {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}

@@ -1,0 +1,90 @@
+.listContainer {
+  list-style-type: none;
+  padding-left: 64px;
+  width: 72%;
+}
+
+.truckItem {
+  display: flex;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.truckImage {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.truckInfo {
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.truckHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.truckName {
+  font-size: 24px;
+  margin: 0;
+}
+
+.truckPrice {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.favoriteButton {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.truckRating {
+  margin-top: 8px;
+}
+
+.ratingStars {
+  color: #ffc107;
+}
+
+.reviewCount,
+.location {
+  margin-left: 8px;
+  color: #666;
+}
+
+.truckDescription {
+  margin: 8px 0;
+}
+
+.truckFeatures {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.feature {
+  background-color: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.showMoreButton {
+  background-color: #e44848;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.showMoreButton:hover {
+  background-color: #c73c3c;
+}
