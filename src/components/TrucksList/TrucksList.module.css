@@ -1,25 +1,38 @@
+.listMainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 40px;
+  gap: 8px;
+  align-items: center;
+}
 .listContainer {
   list-style-type: none;
   padding-left: 64px;
   width: 72%;
+  color: #101828;
 }
 
 .truckItem {
   display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
   border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  border-radius: 20px;
+  margin-bottom: 32px;
   overflow: hidden;
 }
 
 .truckImage {
-  width: 200px;
-  height: 200px;
+  height: 320px;
+  width: 33%;
   object-fit: cover;
+  border-radius: 10px;
 }
 
 .truckInfo {
-  padding: 16px;
   flex-grow: 1;
 }
 
@@ -29,62 +42,112 @@
   align-items: center;
 }
 
+.truckPriceContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
 .truckName {
   font-size: 24px;
   margin: 0;
+  font-weight: 600;
 }
 
 .truckPrice {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .favoriteButton {
+  padding: 0;
   background: none;
   border: none;
-  font-size: 24px;
   cursor: pointer;
 }
 
 .truckRating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 400;
   margin-top: 8px;
+  font-size: 16px;
+  margin-bottom: 24px;
 }
 
 .ratingStars {
   color: #ffc107;
 }
 
-.reviewCount,
+.reviewCount {
+  margin-left: 4px;
+}
+
 .location {
-  margin-left: 8px;
-  color: #666;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 16px;
 }
 
 .truckDescription {
-  margin: 8px 0;
+  margin-bottom: 24px;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .truckFeatures {
+  flex-wrap: wrap;
   display: flex;
+  flex-direction: row;
   gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
 
 .feature {
-  background-color: #f0f0f0;
-  padding: 4px 8px;
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f2f4f7;
+  padding: 12px 18px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .showMoreButton {
   background-color: #e44848;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
+  padding: 16px 40px;
+  border-radius: 50px;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.35s ease;
 }
 
-.showMoreButton:hover {
-  background-color: #c73c3c;
+.showMoreButton:hover,
+.showMoreButton:focus {
+  background-color: #963131;
+}
+
+.loadMoreButton {
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 16px 32px;
+  width: 155px;
+  height: 56px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: border 0.35s ease;
+}
+
+.loadMoreButton:hover,
+.loadMoreButton:focus {
+  border: 1px solid #d84343;
 }
