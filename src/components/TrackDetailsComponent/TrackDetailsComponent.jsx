@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import Features from "../Features/Features.jsx";
 import Reviews from "../Reviews/Reviews.jsx";
+import { FaTruck } from "react-icons/fa";
 
 export default function TrackDetailsComponent() {
   const truck = useSelector(selectCurrentTruck);
@@ -86,6 +87,7 @@ export default function TrackDetailsComponent() {
         <div className={css.additionalListContent}>
           {seeFeatures && <Features />}
           {seeReviews && <Reviews />}
+          <FaTruck fill="#f3a775" />
 
           <div className={css.bookingForm}>
             <h2>Book your campervan now</h2>
