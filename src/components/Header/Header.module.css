@@ -7,6 +7,9 @@
   background-color: #f7f7f7;
   border-bottom: 1px solid #dcdddf;
 }
+.active {
+  color: #d84343;
+}
 .logo {
   justify-self: start;
   font-weight: 800;

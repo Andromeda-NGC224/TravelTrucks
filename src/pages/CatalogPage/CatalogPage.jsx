@@ -4,14 +4,24 @@ import css from "./CatalogPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader/Loader.jsx";
 import { fetchTrucks } from "../../redux/operations.js";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
+import { selectCurrentPage, selectStatus } from "../../redux/secectors.js";
 
 export default function CatalogPage() {
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.trucks.status);
+  const status = useSelector(selectStatus);
+
+  const currentPage = useSelector(selectCurrentPage);
+
+  const initialFetch = useCallback(() => {
+    if (currentPage === 1) {
+      dispatch(fetchTrucks(1));
+    }
+  }, [dispatch, currentPage]);
+
   useEffect(() => {
-    dispatch(fetchTrucks());
-  }, [dispatch]);
+    initialFetch();
+  }, [initialFetch]);
 
   return (
     <div>

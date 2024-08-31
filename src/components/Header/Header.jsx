@@ -1,5 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import css from "./Header.module.css";
+import clsx from "clsx";
+
+const NavLinkStyle = ({ isActive }) => {
+  return clsx(css.link, isActive && css.active);
+};
 
 export default function Header() {
   return (
@@ -11,10 +16,14 @@ export default function Header() {
       <nav className={css.nav}>
         <ul className={css.list}>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/" className={NavLinkStyle}>
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to="/catalog">Catalog</Link>
+            <NavLink to="/catalog" className={NavLinkStyle}>
+              Catalog
+            </NavLink>
           </li>
         </ul>
       </nav>

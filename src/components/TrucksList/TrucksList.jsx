@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IoIosHeartEmpty, IoIosStar } from "react-icons/io";
 import css from "./TrucksList.module.css";
 import { CiMap } from "react-icons/ci";
@@ -7,20 +7,30 @@ import { TbAutomaticGearbox } from "react-icons/tb";
 import { VscCoffee } from "react-icons/vsc";
 import { MdMonitor, MdOutlineMicrowave } from "react-icons/md";
 import { BsDroplet, BsFuelPump, BsFuelPumpDiesel } from "react-icons/bs";
-import { useState } from "react";
+import {
+  selectCurrentPage,
+  selectHasMorePages,
+  selectTrucks,
+} from "../../redux/secectors.js";
+import { fetchTrucks } from "../../redux/operations.js";
+import { Link } from "react-router-dom";
 
 export default function TrucksList() {
-  const [visibleTrucks, setVisibleTrucks] = useState(4);
-  const trucks = useSelector((state) => state.trucks.items);
+  const dispatch = useDispatch();
+  const trucks = useSelector(selectTrucks);
+  console.log(trucks);
+  const hasMorePages = useSelector(selectHasMorePages);
+  const currentPage = useSelector(selectCurrentPage);
+
   const loadMore = () => {
-    setVisibleTrucks((prevVisible) => prevVisible + 4);
+    dispatch(fetchTrucks(currentPage));
   };
 
   return (
     <div className={css.listMainContainer}>
       <ul className={css.listContainer}>
-        {trucks.slice(0, visibleTrucks).map((truck) => (
-          <li key={truck.id} className={css.truckItem}>
+        {trucks.map((truck, index) => (
+          <li key={index} className={css.truckItem}>
             <img
               src={truck.gallery[0].thumb}
               alt={truck.name}
@@ -121,12 +131,14 @@ export default function TrucksList() {
                   )}
                 </ul>
               </div>
-              <button className={css.showMoreButton}>Show more</button>
+              <Link to={`/catalog/${truck.id}`} className={css.showMoreButton}>
+                Show more
+              </Link>
             </div>
           </li>
         ))}
       </ul>
-      {visibleTrucks < trucks.length && (
+      {hasMorePages && (
         <button onClick={loadMore} className={css.loadMoreButton}>
           Load More
         </button>
