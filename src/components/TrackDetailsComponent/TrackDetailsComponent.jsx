@@ -87,7 +87,6 @@ export default function TrackDetailsComponent() {
         <div className={css.additionalListContent}>
           {seeFeatures && <Features />}
           {seeReviews && <Reviews />}
-          <FaTruck fill="#f3a775" />
 
           <div className={css.bookingForm}>
             <h2>Book your campervan now</h2>
