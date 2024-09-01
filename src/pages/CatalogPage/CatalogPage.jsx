@@ -6,6 +6,7 @@ import Loader from "../../components/Loader/Loader.jsx";
 import { fetchTrucks } from "../../redux/operations.js";
 import { useCallback, useEffect } from "react";
 import { selectCurrentPage, selectStatus } from "../../redux/secectors.js";
+import NotFoundPage from "../NotFoundPage/NotFoundPage.jsx";
 
 export default function CatalogPage() {
   const dispatch = useDispatch();
@@ -27,7 +28,9 @@ export default function CatalogPage() {
     <div>
       <div className={css.mainContainer}>
         <OptionsSearch />
-        {status === "loading" ? <Loader /> : <TrucksList />}
+        {status === "loading" && <Loader />}
+        {status === "failed" && <NotFoundPage />}
+        {status === "success" && <TrucksList />}
       </div>
     </div>
   );

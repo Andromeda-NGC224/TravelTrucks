@@ -11,14 +11,6 @@ const trucksSlice = createSlice({
     hasMore: true,
     currentTruck: null,
   },
-  reducers: {
-    toggleFavorite: (state, action) => {
-      const truck = state.items.find((truck) => truck.id === action.payload);
-      if (truck) {
-        truck.isFavorite = !truck.isFavorite;
-      }
-    },
-  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchTrucks.pending, (state) => {
@@ -47,7 +39,5 @@ const trucksSlice = createSlice({
       });
   },
 });
-
-export const { toggleFavorite } = trucksSlice.actions;
 
 export default trucksSlice.reducer;

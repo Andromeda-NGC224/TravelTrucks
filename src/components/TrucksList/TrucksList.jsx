@@ -9,27 +9,59 @@ import { MdMonitor, MdOutlineMicrowave } from "react-icons/md";
 import { BsDroplet, BsFuelPump, BsFuelPumpDiesel } from "react-icons/bs";
 import {
   selectCurrentPage,
+  selectFilter,
   selectHasMorePages,
   selectTrucks,
+  selectFavorites,
+  selectStatus,
 } from "../../redux/secectors.js";
 import { fetchTrucks } from "../../redux/operations.js";
 import { Link } from "react-router-dom";
+import { toggleFavorite } from "../../redux/filter/filterSlice.js";
 
 export default function TrucksList() {
   const dispatch = useDispatch();
   const trucks = useSelector(selectTrucks);
-  console.log(trucks);
+
+  const filter = useSelector(selectFilter);
   const hasMorePages = useSelector(selectHasMorePages);
   const currentPage = useSelector(selectCurrentPage);
+  const favorites = useSelector(selectFavorites);
+  const status = useSelector(selectStatus);
+
+  if (status === "failed" || !trucks) {
+    return <div>Вибачте, вантажівку не знайдено.</div>;
+  }
 
   const loadMore = () => {
     dispatch(fetchTrucks(currentPage));
   };
 
+  const filteredTrucks = trucks.filter((truck) => {
+    if (
+      filter.location &&
+      !truck.location.toLowerCase().includes(filter.location.toLowerCase())
+    )
+      return false;
+    if (filter.AC && !truck.AC) return false;
+    if (filter.Automatic && truck.transmission !== "automatic") return false;
+    if (filter.Kitchen && !truck.kitchen) return false;
+    if (filter.TV && !truck.TV) return false;
+    if (filter.Bathroom && !truck.bathroom) return false;
+    if (filter.VehicleType && truck.form !== filter.VehicleType) return false;
+    return true;
+  });
+
+  console.log(filteredTrucks);
+
+  const setFavorite = (id) => {
+    dispatch(toggleFavorite(id));
+  };
+
   return (
     <div className={css.listMainContainer}>
       <ul className={css.listContainer}>
-        {trucks.map((truck, index) => (
+        {filteredTrucks.map((truck, index) => (
           <li key={index} className={css.truckItem}>
             <img
               src={truck.gallery[0].thumb}
@@ -43,8 +75,15 @@ export default function TrucksList() {
                   <span className={css.truckPrice}>
                     €{truck.price.toFixed(2)}
                   </span>
-                  <button className={css.favoriteButton}>
-                    <IoIosHeartEmpty size={24} />
+                  <button
+                    className={css.favoriteButton}
+                    onClick={() => setFavorite(truck.id)}
+                  >
+                    {favorites.includes(truck.id) ? (
+                      <IoIosHeartEmpty size={24} color="red" />
+                    ) : (
+                      <IoIosHeartEmpty size={24} />
+                    )}
                   </button>
                 </div>
               </div>
@@ -118,7 +157,7 @@ export default function TrucksList() {
                   ) : (
                     ""
                   )}
-                  {truck.gas === true ? (
+                  {truck.engine === "petrol" ? (
                     <li className={css.feature}>
                       <BsFuelPump size={20} />
                       Petrol
@@ -139,7 +178,11 @@ export default function TrucksList() {
         ))}
       </ul>
       {hasMorePages && (
-        <button onClick={loadMore} className={css.loadMoreButton}>
+        <button
+          type="button"
+          onClick={() => loadMore()}
+          className={css.loadMoreButton}
+        >
           Load More
         </button>
       )}

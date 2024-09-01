@@ -13,9 +13,13 @@ export default function TruckDetailsPage() {
     dispatch(fetchTruckDetails(id));
   }, [dispatch, id]);
 
-  const truck = useSelector(selectCurrentTruck);
   const status = useSelector(selectStatus);
-  console.log(truck);
 
-  return <>{status === "loading" ? <Loader /> : <TrackDetailsComponent />}</>;
+  return (
+    <>
+      {status === "loading" && <Loader />}
+      {status === "failed" && <div>Truck not found</div>}
+      {status === "success" && <TrackDetailsComponent />}
+    </>
+  );
 }
