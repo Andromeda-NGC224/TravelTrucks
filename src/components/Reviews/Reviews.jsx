@@ -6,7 +6,6 @@ import { FaStar } from "react-icons/fa";
 export default function Reviews() {
   const track = useSelector(selectCurrentTruck);
   const reviews = track.reviews;
-  console.log(reviews);
 
   return (
     <div className={css.reviewsContainer}>

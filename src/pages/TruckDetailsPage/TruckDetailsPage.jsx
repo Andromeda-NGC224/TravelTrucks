@@ -20,7 +20,6 @@ export default function TruckDetailsPage() {
   useEffect(() => {
     fetchTruckData();
   }, [fetchTruckData]);
-  console.log(currentTruck);
 
   return <>{!currentTruck ? <Loader /> : <TrackDetailsComponent />}</>;
 }

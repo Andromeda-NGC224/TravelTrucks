@@ -1,3 +1,103 @@
 .optionsSearchContainer {
-  width: 28%;
+  min-width: 28%;
+}
+
+.locationLabel {
+  color: #6c717b;
+  font-size: 14px;
+  font-weight: 400;
+}
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.inputContainer {
+  position: relative;
+}
+.mapIcon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+}
+
+.location input {
+  width: 100%;
+  padding: 16px 20px 15px 48px;
+  outline: none;
+  border: none;
+  box-sizing: border-box;
+  background-color: #f6f6f6;
+  border-radius: 10px;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+.filters h3 {
+  font-size: 16px;
+  font-weight: 500;
+  color: #475467;
+  margin-bottom: 32px;
+}
+
+.filterSection {
+  margin-bottom: 40px;
+}
+
+.filterSection h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #101828;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 24px;
+}
+
+.filterOptions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+}
+
+.filterButton {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  font-size: 16px;
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+  width: 112px;
+  height: 96px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  transition: border 0.3s ease-in;
+}
+
+.filterButton:hover {
+  border: 1px solid #e44848;
+}
+.searchButton {
+  width: 33%;
+  min-width: 100px;
+  padding: 15px;
+  background-color: #e44848;
+  color: #fff;
+  border: none;
+
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.searchButton:hover {
+  background-color: #963131;
 }

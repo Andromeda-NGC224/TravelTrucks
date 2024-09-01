@@ -6,11 +6,10 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import Features from "../Features/Features.jsx";
 import Reviews from "../Reviews/Reviews.jsx";
-import { FaTruck } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function TrackDetailsComponent() {
   const truck = useSelector(selectCurrentTruck);
-  console.log(truck);
 
   const [seeFeatures, setSeeFeatures] = useState(true);
   const [seeReviews, setSeeReviews] = useState(false);
@@ -27,8 +26,25 @@ export default function TrackDetailsComponent() {
     setActiveTab("reviews");
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const bookingDate = form.bookingDate.value.trim();
+    const comment = form.comment.value.trim();
+
+    if (!name || !email || !bookingDate || !comment) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+    toast.success("Booking was successful!");
+    form.reset();
+  };
+
   return (
     <div className={css.container}>
+      <Toaster />
       <div className={css.nameCont}>
         <h1 className={css.name}>{truck.name}</h1>
       </div>
@@ -92,7 +108,7 @@ export default function TrackDetailsComponent() {
             <h2>Book your campervan now</h2>
             <p>Stay connected! We are always ready to help you.</p>
 
-            <form className={css.form}>
+            <form onSubmit={handleSubmit} className={css.form}>
               <div className={css.formGroup}>
                 <input
                   type="text"
